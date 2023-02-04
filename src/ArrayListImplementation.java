@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class ArrayListImplementation {
 
     private int[] array;
@@ -69,6 +71,33 @@ public class ArrayListImplementation {
 
         array = mergedArrays;
         size--;
+    }
+
+    public void add(int index, int element) {
+        int[] firstArray = new int[index + 1];
+        for (int i = 0; i < index; i++) {
+            firstArray[i] = array[i];
+        }
+        firstArray[index] = element;
+
+        int[] secondArray = new int[array.length - index];
+        for (int i = 0; i < size; i++) {
+            secondArray[i] = array[i + index];
+        }
+
+        int[] mergedArrays = new int[array.length + 1];
+        int position = 0;
+        for (int i : firstArray) {
+            mergedArrays[position] = i;
+            position++;
+        }
+        for (int i : secondArray) {
+            mergedArrays[position] = i;
+            position++;
+        }
+
+        array = mergedArrays;
+        size++;
     }
 
 }
